@@ -22,7 +22,26 @@
 
         let myKeyboard = new Keyboard({
         onChange: input => onChange(input),
-        onKeyPress: button => onKeyPress(button)
+        onKeyPress: button => onKeyPress(button),
+        layout: {
+            'default': [
+                ', . ? ! {bksp}',
+                '',
+                'C A Z Y X W V U',
+                'D             T',
+                'E             S',
+                'F             R',
+                'G             Q',
+                'H             P',
+                'I B J K L M N O',
+                '',
+                '{space}'
+            ],
+        },
+        display: {
+            '{space}': 'space',
+            '{bksp}': 'backspace'
+        },
         });
 
         function onChange(input) {
