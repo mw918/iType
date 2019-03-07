@@ -1,18 +1,38 @@
 <head>
-    
+    iType
 </head>
 
 
-<body style="background: url('https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/image/AppleInc/aos/published/images/M/Q0/MQ052/MQ052?wid=4000&hei=1800&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1495129815011');background-attachment: fixed; background-size: 100%"><!-- Chris-->
+<body><!-- Chris-->
     <script src="webgazer.js" type="text/javascript" ></script>
     <script src="drawEyeCursor.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
     <!--
     <script src="allFunctions.js" type="text/javascript"></script>
     <script src="testing.js" type="text/javascript"></script>
     -->
+    <input class="input" placeholder="Tap on the virtual keyboard to start" />
+    <div class="simple-keyboard"></div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.min.js"></script>
+    <script src="src/index.js"></script>
     <canvas id="screenCanvas" width=1356 height=638 style="border:1px solid #000000;"></canvas>
     <script>
-        
+        let Keyboard = window.SimpleKeyboard.default;
+
+        let myKeyboard = new Keyboard({
+        onChange: input => onChange(input),
+        onKeyPress: button => onKeyPress(button)
+        });
+
+        function onChange(input) {
+        document.querySelector(".input").value = input;
+        console.log("Input changed", input);
+        }
+
+        function onKeyPress(button) {
+        console.log("Button pressed", button);
+        }
     </script>
     <script type="text/javascript">
         //counter(5);
