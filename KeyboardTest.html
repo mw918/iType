@@ -17,7 +17,9 @@
     <script type="text/javascript">
         //counter(5);
         //sendAlert();
+        //Begins the webgazer API
         webgazer.begin();
+        //Makes the canvas
         var canvas = document.getElementById("screenCanvas");
         var ctx = canvas.getContext("2d");
         ctx.fillStyle = "#FF0000";
@@ -33,11 +35,14 @@
                 {
                     var checkx = prediction.x;
                     var checky = prediction.y;
-                    console.log("The x-coordinate is "+checkx);
-                    console.log("The y-coordinate is "+checky);
-                    
+                    ctx.fillStyle = "#FF0000";
                     ctx.fillRect(checkx, checky, 20, 20);
-                    //screenCanvas.clear();
+                    var oldcheckx = checkx;
+                    var oldchecky = checky;
+                    if (elapsedTime%3>2)
+                    {
+                        ctx.clearRect(0, 0, 1356, 638);
+                    }
                 }
         }).begin();
     </script>
