@@ -1,0 +1,22 @@
+input {
+    width: 100%;
+    height: 100px;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    box-sizing: border-box;
+  }
+  
+  .simple-keyboard {
+    max-width: 850px;
+  }
+  
+  .simple-keyboard .hg-row:not(:first-child):not(:last-child) {
+    justify-content: space-between;
+  }
+  
+  .simple-keyboard .hg-row:not(:first-child):not(:last-child) .hg-button {
+    flex-grow: unset;
+    min-width: 50px;
+  }
+  
