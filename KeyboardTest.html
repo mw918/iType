@@ -1,6 +1,55 @@
 <head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<p>progress bar</p>
+<script>
+var array=[];
+function startTime() {
+  array.push(1);
+  var today = new Date();
+  var s = today.getSeconds()%5+1;
+  //document.getElementById('txt').innerHTML =s;
+  var elem = document.getElementById("myBar");  
+  var width = 0;		
+  var id = setInterval(frame, 20);
+  document.getElementById('txt').innerHTML =s+array;
+  if(s==5){
+     array=[];
+  }
+  function frame() {
+    if (width > 20) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width+(s-1)*20 + '%'; 
+	}
+  }
+  var t = setTimeout(startTime, 1000);
+
+
+}
+function showCoords(event) {
+	  var x = event.clientX;
+	  var y = event.clientY;
+	  var coor = "X coords: " + x + ", Y coords: " + y;
+	  document.getElementById("demo").innerHTML = coor;
+	}
+</script>
 </head>
 
+
+<body onmousemove = "showCoords(event)" onload="startTime()">
+
+
+<div id="txt"></div>
+<div class="w3-container">
+  <div class="w3-light-grey">
+    <div id="myBar" class="w3-green" style="height:20px;width:0"></div>
+  </div>
+  <br>
+
+</div>
+
+<script>
 
 <body><!-- Chris-->
     <script src="webgazer.js" type="text/javascript" ></script>
