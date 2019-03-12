@@ -36,6 +36,75 @@ function showCoords(event) {
 	  document.getElementById("demo").innerHTML = coor;
 	}
 
+  // returns a keyboard symbol based on its coordinates on the keyboard
+    function getLetter(x, y){
+      if (x > 175 && x < 340 && y > 245 && y < 285){
+        return 'a';
+      } else if (x > 175 && x < 340 && y > 515 && y < 555){
+        return 'b';
+      } else if(x > 5 && x < 170 && y > 245 && y < 285){
+        return 'c';
+      } else if (x > 5 && x < 105 && y > 290 && y < 330){
+        return 'd';
+      } else if(x > 5 && x < 105 && y > 335 && y < 375){
+        return 'e';
+      } else if (x > 5 && x < 105 && y > 380 && y < 420){
+        return 'f';
+      } else if(x > 5 && x < 105 && y > 425 && y < 465){
+        return 'g';
+      } else if (x > 5 && x < 105 && y > 470 && y < 510){
+        return 'h';
+      } else if(x > 5 && x < 170 && y > 515 && y < 555){
+        return 'i';
+      } else if (x > 345 && x < 510 && y > 515 && y < 555){
+        return 'j';
+      } else if(x > 515 && x < 680 && y > 515 && y < 555){
+        return 'k';
+      } else if (x > 685 && x < 850 && y > 515 && y < 555){
+        return 'l';
+      } else if(x > 855 && x < 1020 && y > 515 && y < 555){
+        return 'm';
+      } else if (x > 1085 && x < 1190 && y > 515 && y < 555){
+        return 'n';
+      } else if(x > 1195 && x < 1360 && y > 515 && y < 555){
+        return 'o';
+      } else if (x > 1260 && x < 1360 && y > 470 && y < 510){
+        return 'p';
+      } else if(x > 1260 && x < 1360 && y > 425 && y < 465){
+        return 'q';
+      } else if (x > 1260 && x < 1360 && y > 380 && y < 420){
+        return 'r';
+      } else if(x > 1260 && x < 1360 && y > 335 && y < 375){
+        return 's';
+      } else if (x > 1260 && x < 1360 && y > 290 && y < 330){
+        return 't';
+      } else if(x > 1195 && x < 1360 && y > 245 && y < 285){
+        return 'u';
+      } else if (x > 1085 && x < 1190 && y > 245 && y < 285){
+        return 'v';
+      } else if(x > 855 && x < 1020 && y > 245 && y < 285){
+        return 'w';
+      } else if (x > 685 && x < 850 && y > 245 && y < 285){
+        return 'x';
+      } else if(x > 515 && x < 680 && y > 245 && y < 285){
+        return 'y';
+      } else if (x > 345 && x < 510 && y > 245 && y < 285){
+        return 'z';
+      } else if(x > 215 && x < 315 && y > 335 && y < 375){
+        return '?';
+      } else if (x > 425 && x < 525 && y > 335 && y < 375){
+        return '!';
+      } else if(x > 635 && x < 735 && y > 425 && y < 465){
+        return ' ';
+      } else if (x > 635 && x < 735 && y > 335 && y < 375){
+        return '.';
+      } else if(x > 840 && x < 940 && y > 335 && y < 375){
+        return ',';
+      } else if(x > 1050 && x < 1150 && y > 335 && y < 375){
+        return '\b';
+      }
+    }
+
 function doWebGazer()
 {
     //counter(5);
