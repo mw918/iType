@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<canvas id="screenCanvas" width=1300 height=600 style="border:1px solid #a282ec;"></canvas>
+
+<body onload="doWebGazer()";>
+  <script src="webgazer.js" type="text/javascript" ></script>
+
+  <div style="
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  ">
+    <input id="h" type="button" value="h" onclick="updateTextfield('h')"/> 
+  </div>
+
+  <div style="
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  ">
+      <input id="e" type="button" value="e" onclick="updateTextfield('e')"/> 
+    </div>  
+
+    <div style="
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  ">
+      <input id="y" type="button" value="y" onclick="updateTextfield('y')"/> 
+    </div> 
+  
+  <div style="text-align: center;">
+      <input class="input"/> 
+      <input id="clear" type="button" value="clear" onclick="clearTextfield()"/> 
+  </div>
+  
+  
+
+  <script>
+    function doWebGazer()
+    {
+      webgazer.begin();
+      xcoordinates = [];
+      ycoordinates = [];
+      var intervalID = window.setInterval(function(){
+        var xAvg = getAvgCoordinates(xcoordinates);
+        var yAvg = getAvgCoordinates(ycoordinates);
+        var avg = (xAvg + yAvg)/2
+        xcoordinates = [];
+        ycoordinates = [];
+        console.log(avg)
+        if (avg > 500 && avg < 800) {
+          document.getElementById('h').click(); 
+        } 
+        if (avg < 0) {
+          document.getElementById('e').click();
+        }
+        if (avg > 200 && avg < 300) {
+          document.getElementById('y').click();
+        }        
+      }, 3000);
+
+      //Sets up the canvas
+      var canvas = document.getElementById("screenCanvas");
+      var ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#FF0000";
+
+      webgazer.setGazeListener(function(data, elapsedTime) 
+      {
+          if (data == null)
+          {
+              return;
+          }
+
+          var prediction = webgazer.getCurrentPrediction();
+          if (prediction)
+          {
+              var checkx = prediction.x;
+              var checky = prediction.y;
+              xcoordinates.push(checkx);
+              ycoordinates.push(checky)
+              ctx.fillRect(checkx, checky, 20, 20);
+                if (elapsedTime%3>2)
+                {
+                    ctx.clearRect(0, 0, 1356, 638);
+                }
+          }
+      }).begin();
+    }
+
+    function getAvgCoordinates(arr)
+    {
+      var sum, avg = 0;
+
+      if (arr.length)
+      {
+          sum = arr.reduce(function(a, b) { return a + b; });
+          avg = sum / arr.length;
+      }
+
+      return avg
+    }
+
+    function updateTextfield(input){
+      document.querySelector(".input").value += input;
+    }
+
+    function clearTextfield(){
+      document.querySelector(".input").value = "";
+    }
+</script>    
+
+</body>
+</html>
