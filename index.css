@@ -1,0 +1,20 @@
+/*Change size of all buttons*/
+.key {
+    width: 120px;
+    height: 60px;
+  }
+
+  .input {
+    width: 240px;
+    height: 60px;
+  }
+
+  #backspace {
+    background-color: #FF0000;
+  }
+
+  #screenCanvas {
+    width: 100%;
+    text-align:center;
+ }
+ 
