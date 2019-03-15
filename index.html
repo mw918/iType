@@ -45,24 +45,32 @@
       webgazer.begin();
       xcoordinates = [];
       ycoordinates = [];
+      //var xAvg;
+      //var yAvg;
+      var buttonSize=50;
+      var bottomY=580;
+      var rightX=1200;
       var intervalID = window.setInterval(function(){
-        var xAvg = getAvgCoordinates(xcoordinates);
-        var yAvg = getAvgCoordinates(ycoordinates);
-        var avg = (xAvg + yAvg)/2
+        xAvg = getAvgCoordinates(xcoordinates);
+        yAvg = getAvgCoordinates(ycoordinates);
+        //var avg = (xAvg + yAvg)/2;
         xcoordinates = [];
         ycoordinates = [];
-        console.log(avg)
-        if (avg > 500 && avg < 800) {
+        //console.log(avg)
+        //if (avg > 500 && avg < 800) {
+        if (xAvg> rightX && yAvg<buttonSize){
           document.getElementById('h').click(); 
         } 
-        if (avg < 0) {
+        //if (avg < 0) {
+        if (xAvg> rightX && yAvg>bottomY){
           document.getElementById('e').click();
         }
-        if (avg > 200 && avg < 300) {
+        //if (avg > 200 && avg < 300) {
+        if (xAvg< buttonSize && yAvg>bottomY){
           document.getElementById('y').click();
         }        
-      }, 3000);
-
+      }, 500);
+    
       //Sets up the canvas
       var canvas = document.getElementById("screenCanvas");
       var ctx = canvas.getContext("2d");
@@ -81,8 +89,14 @@
               var checkx = prediction.x;
               var checky = prediction.y;
               xcoordinates.push(checkx);
-              ycoordinates.push(checky)
-              ctx.fillRect(checkx, checky, 20, 20);
+              ycoordinates.push(checky);
+              if (xcoordinates.length>10)
+              {
+                xcoordinates.shift();
+                ycoordinates.shift();
+              }
+              //ctx.fillRect(checkx, checky, 20, 20);
+              ctx.fillRect(xAvg, yAvg, 20, 20);
                 if (elapsedTime%3>2)
                 {
                     ctx.clearRect(0, 0, 1356, 638);
