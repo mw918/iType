@@ -17,7 +17,7 @@
   top: 0px;
   right: 610px;
   ">
-      <input id="1" type="button" class="key" value="1" onclick="updateTextfield('1')"/> 
+      <input id="one" type="button" class="key" value="1" onclick="updateTextfield('1')"/> 
   </div> 
 
   <div style="
@@ -25,15 +25,15 @@
   top: 0px;
   right: 305px;
   ">
-    <input id="2" type="button" class="key" value="2" onclick="updateTextfield('2')"/> 
+    <input id="two" type="button" class="key" value="2" onclick="updateTextfield('2')"/> 
   </div>
 
   <div style="
   position: absolute;
   top: 0px;
-  right: 10px;
+  right: 0px;
   ">
-    <input id="3" type="button" class="key" value="3" onclick="updateTextfield('3')"/> 
+    <input id="three" type="button" class="key" value="3" onclick="updateTextfield('3')"/> 
   </div>
 
   <div style="
@@ -41,7 +41,7 @@
   top: 200px;
   right: 0px;
   ">
-    <input id="4" type="button" class="key" value="4" onclick="updateTextfield('4')"/> 
+    <input id="four" type="button" class="key" value="4" onclick="updateTextfield('4')"/> 
   </div>
 
   <div style="
@@ -49,7 +49,7 @@
   top: 400px;
   right: 0px;
   ">
-    <input id="5" type="button" class="key" value="5" onclick="updateTextfield('5')"/> 
+    <input id="five" type="button" class="key" value="5" onclick="updateTextfield('5')"/> 
   </div>
 
   <div style="
@@ -57,7 +57,7 @@
   bottom: 0px;
   right: 0px;
   ">
-      <input id="6" type="button" class="key" value="6" onclick="updateTextfield('6')"/> 
+      <input id="six" type="button" class="key" value="6" onclick="updateTextfield('6')"/> 
     </div>  
 
   <div style="
@@ -65,7 +65,7 @@
   bottom: 0px;
   right: 305px;
   ">
-      <input id="7" type="button" class="key" value="7" onclick="updateTextfield('7')"/> 
+      <input id="seven" type="button" class="key" value="7" onclick="updateTextfield('7')"/> 
   </div> 
 
   <div style="
@@ -73,7 +73,7 @@
   bottom: 0px;
   right: 610px;
   ">
-    <input id="8" type="button" class="key" value="8" onclick="updateTextfield('8')"/> 
+    <input id="eight" type="button" class="key" value="8" onclick="updateTextfield('8')"/> 
   </div> 
 
   <div style="
@@ -81,7 +81,7 @@
   bottom: 0px;
   left: 305px;
   ">
-      <input id="9" type="button" class="key" value="9" onclick="updateTextfield('9')"/> 
+      <input id="nine" type="button" class="key" value="9" onclick="updateTextfield('9')"/> 
   </div> 
 
   <div style="
@@ -89,7 +89,7 @@
     bottom: 0px;
     left: 0px;
     ">
-      <input id="0" type="button" class="key" value="0" onclick="updateTextfield('0')"/> 
+      <input id="zero" type="button" class="key" value="0" onclick="updateTextfield('0')"/> 
   </div> 
 
   
@@ -105,7 +105,7 @@
   <div style="
   text-align: center;
   position: absolute;
-  bottom: 200px;
+  top: 240px;
   left: 0px;">
       <input id="backspace" type="button" class="key" value="backspace" onclick="clearTextfield()"/> 
   </div>
@@ -119,30 +119,55 @@
       webgazer.begin();
       xcoordinates = [];
       ycoordinates = [];
-      //var xAvg;
-      //var yAvg;
-      var buttonSize=50;
-      var bottomY=580;
-      var rightX=1200;
+      var buttonHeight=60;
+      var buttonWidth=120;
+      var bottomY=638;
+      var rightX=1356;
+      var buttonXDistance;
+      var buttonYDistance;
+      var xAvg;
+      var yAvg;
       var intervalID = window.setInterval(function(){
-        xAvg = getAvgCoordinates(xcoordinates);
-        yAvg = getAvgCoordinates(ycoordinates);
-        //var avg = (xAvg + yAvg)/2;
+      xAvg = getAvgCoordinates(xcoordinates);
+      yAvg = getAvgCoordinates(ycoordinates);
+        //console.log(xAvg);
+        //console.log(yAvg);
         xcoordinates = [];
         ycoordinates = [];
-        //console.log(avg)
-        //if (avg > 500 && avg < 800) {
-        if (xAvg> rightX && yAvg<buttonSize){
-          document.getElementById('h').click(); 
-        } 
-        //if (avg < 0) {
-        if (xAvg> rightX && yAvg>bottomY){
-          document.getElementById('e').click();
+
+        if (xAvg> (rightX-610)-buttonWidth && xAvg < rightX-610 && yAvg < buttonHeight){
+          document.getElementById('one').click();
         }
-        //if (avg > 200 && avg < 300) {
-        if (xAvg< buttonSize && yAvg>bottomY){
-          document.getElementById('y').click();
-        }        
+        else if (xAvg> (rightX-305)-buttonWidth && xAvg < rightX-305 && yAvg < buttonHeight){
+          document.getElementById('two').click();
+        }
+        else if (xAvg> rightX-buttonWidth && yAvg < buttonHeight){
+          document.getElementById('three').click();
+        }
+        else if (xAvg> rightX-buttonWidth && yAvg < buttonHeight+200 && yAvg > 200){
+          document.getElementById('four').click();
+        }
+        else if (xAvg> rightX-buttonWidth && yAvg < buttonHeight+400 && yAvg > 400){
+          document.getElementById('five').click();
+        }
+        else if (xAvg> rightX-buttonWidth && yAvg > bottomY-buttonHeight){
+          document.getElementById('six').click();
+        }
+        else if (xAvg> rightX-305-buttonWidth && xAvg> rightX-305 && yAvg > bottomY-buttonHeight){
+          document.getElementById('seven').click();
+        }
+        else if (xAvg> rightX-610-buttonWidth && xAvg> rightX-610 && yAvg > bottomY-buttonHeight){
+          document.getElementById('eight').click();
+        }
+        else if (xAvg< 305 + buttonWidth && xAvg> 305 && yAvg > bottomY-buttonHeight){
+          document.getElementById('nine').click();
+        }
+        else if (xAvg< buttonWidth && yAvg > bottomY-buttonHeight){
+          document.getElementById('zero').click();
+        }
+        else if (xAvg< buttonWidth && yAvg > 240 && yAvg < 240 + buttonHeight){
+          document.getElementById('backspace').click();
+        }
       }, 500);
     
       //Sets up the canvas
@@ -175,7 +200,7 @@
               ctx.fillRect(xAvg, yAvg, 20, 20);
                 if (elapsedTime%3>2)
                 {
-                    ctx.clearRect(0, 0, 1356, 638);
+                    ctx.clearRect(0, 0, rightX, bottomY);
                 }
           }
       }).begin();
@@ -199,7 +224,14 @@
     }
 
     function clearTextfield(){
-      document.querySelector(".input").value = "";
+      if (document.querySelector(".input").value.length==1)
+      {
+        document.querySelector(".input").value = "";
+      }
+      else
+      {
+        document.querySelector(".input").value=Math.floor(document.querySelector(".input").value*0.1);
+      }
     }
 </script>    
 
