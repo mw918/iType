@@ -52,12 +52,16 @@
       <input class="input2"/> 
   </div>
   
-<style>
-	#webgazerVideoFeed
-	{
-		left: 100px;
-	}
-</style>
+  <div style="
+  text-align: center;
+  position: absolute;
+  top: 500px;
+  left: 580px;
+  ">
+      <input class="act"/> 
+  </div>
+  
+
 
 <script src="./webgazer.js"></script>
 <script>
@@ -67,18 +71,47 @@ var active = 0;
 
 // add text to text field
     function updateTextfield(input){
-      document.querySelector(".input2").value += input;
+      document.querySelector(".input2").value = input;
+    }
+	
+	function updateTextfield2(input){
+      document.querySelector(".act").value = input;
     }
 	
 	function clearTextfield(){
         document.querySelector(".input2").value = "";
     }
+		document.addEventListener("keypress", function(event) {
+		if (event.keyCode == 49) {
+			webgazer.resume();
+		}
+		if (event.keyCode == 50) {
+		
+			active = !active;
+			if (active)
+			{
+				updateTextfield2("Buttons Are Enabled");
+				document.body.style.backgroundColor = "#1dd1a1";
+			}
+			else
+			{
+				updateTextfield2("Buttons Are Disabled");
+				document.body.style.backgroundColor = "#ff6b6b";
+			}
+			
+		}
+	})
+
 	
 function doWebGazer()
     {
      	webgazer.begin();
 		webgazer.showPredictionPoints(true);
 		webgazer.setRegression('ridge');
+		
+		document.body.style.backgroundColor = "#ff6b6b";
+		updateTextfield2("Buttons Are Disabled");
+		
 		
 		xcoordinates = [];
 		ycoordinates = [];
@@ -97,25 +130,36 @@ function doWebGazer()
 		xcoordinates = [];
 		ycoordinates = [];
 	
-
-		if (xAvg > 350 && xAvg < 350+300 && yAvg > 0 && yAvg < 300)
+		if (active)
 		{
-			clearTextfield();
-			updateTextfield('one');
+			if (xAvg > 350 && xAvg < 350+300 && yAvg > 0 && yAvg < 300)
+			{
+				clearTextfield();
+				updateTextfield('one');
+				//active = 0;
+				
+				webgazer.pause();
+			}
+			
+			else if (xAvg > 700 && xAvg < 700+300 && yAvg > 0 && yAvg < 300)
+			{
+				clearTextfield();
+				updateTextfield('two');
+				//active = 0;
+				
+				webgazer.pause();
+			}
+			else if (xAvg > 1050 && xAvg < 1050+300 && yAvg > 0 && yAvg < 300)
+			{
+				clearTextfield();
+				updateTextfield('three');
+				//active = 0;
+				
+				webgazer.pause();
+			}
 		}
 		
-		else if (xAvg > 700 && xAvg < 700+300 && yAvg > 0 && yAvg < 300)
-		{
-			clearTextfield();
-			updateTextfield('two');
-		}
-		else if (xAvg > 1050 && xAvg < 1050+300 && yAvg > 0 && yAvg < 300)
-		{
-			clearTextfield();
-			updateTextfield('three');
-		}
-		
- 	}, 1000); // cycle runs every 500 milliseconds
+ 	}, 3000); // cycle runs every 500 milliseconds
 
 
       // sets up the canvas
