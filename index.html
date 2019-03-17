@@ -23,7 +23,7 @@
   top: 0px;
   left: 350px;
   ">
-    <input id="one" type="button" class="key" value="1" onclick="updateTextfield('one')"/> 
+    <input style="font-size: 64px;" id="one" type="button" class="key" value="Yes"/> 
   </div>
 
   <div style="
@@ -31,7 +31,7 @@
   top: 0px;
   left: 700px;
   ">
-    <input id="two" type="button" class="key" value="2" onclick="updateTextfield('two')"/> 
+    <input style="font-size: 64px;" id="two" type="button" class="key" value="No"/> 
   </div>
 
   <div style="
@@ -39,7 +39,7 @@
   top: 0px;
   left: 1050px;
   ">
-    <input id="three" type="button" class="key" value="3" onclick="updateTextfield('three')"/> 
+    <input style="font-size: 64px;" id="three" type="button" class="key" value="N/a"/> 
   </div>
 
  <!-- Add input box to display text -->
@@ -48,6 +48,7 @@
   position: absolute;
   top: 550px;
   left: 580px;
+  visibility: hidden;
   ">
       <input class="input2"/> 
   </div>
@@ -57,6 +58,7 @@
   position: absolute;
   top: 500px;
   left: 580px;
+  visibility: hidden;
   ">
       <input class="act"/> 
   </div>
@@ -83,6 +85,9 @@ var active = 0;
     }
 		document.addEventListener("keypress", function(event) {
 		if (event.keyCode == 49) {
+			document.getElementById("one").style.background='#c8d6e5';
+			document.getElementById("two").style.background='#c8d6e5';
+			document.getElementById("three").style.background='#c8d6e5';
 			webgazer.resume();
 		}
 		if (event.keyCode == 50) {
@@ -113,6 +118,10 @@ function doWebGazer()
 		updateTextfield2("Buttons Are Disabled");
 		
 		
+		document.getElementById("one").style.background='#c8d6e5';
+		document.getElementById("two").style.background='#c8d6e5';
+		document.getElementById("three").style.background='#c8d6e5';
+		
 		xcoordinates = [];
 		ycoordinates = [];
 		var buttonHeight=60;
@@ -135,26 +144,26 @@ function doWebGazer()
 			if (xAvg > 350 && xAvg < 350+300 && yAvg > 0 && yAvg < 300)
 			{
 				clearTextfield();
-				updateTextfield('one');
+				updateTextfield('Yes');
 				//active = 0;
-				
+				document.getElementById("one").style.background='#feca57';
 				webgazer.pause();
 			}
 			
 			else if (xAvg > 700 && xAvg < 700+300 && yAvg > 0 && yAvg < 300)
 			{
 				clearTextfield();
-				updateTextfield('two');
+				updateTextfield('No');
 				//active = 0;
-				
+				document.getElementById("two").style.background='#feca57';
 				webgazer.pause();
 			}
 			else if (xAvg > 1050 && xAvg < 1050+300 && yAvg > 0 && yAvg < 300)
 			{
 				clearTextfield();
-				updateTextfield('three');
+				updateTextfield('N/a');
 				//active = 0;
-				
+				document.getElementById("three").style.background='#feca57';
 				webgazer.pause();
 			}
 		}
